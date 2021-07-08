@@ -23,4 +23,8 @@ public class PacienteServicos {
         PacienteDao pDao = DaoFactory.getPacienteDAO();
         pDao.deletarPaciente(codPaciente);
     }
+    public void alterarDadosPaciente (Paciente p) throws SQLException{
+        PacienteDao pDao = DaoFactory.getPacienteDAO();
+        pDao.alterarDadosPaciente(p);
+    }
 }

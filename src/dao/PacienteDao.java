@@ -160,4 +160,19 @@ public class PacienteDao {
            con.close();
        }
    }
+   
+    public void alterarDadosPaciente (Paciente p) throws SQLException{
+        Connection con = Conexao.getConexao();
+        Statement stat = con.createStatement();
+        
+        try{
+            String sql;
+            sql = "update paciente set febre= "+p.getFebre()+",tosse_seca= "+p.getTosse()+",dor_de_cabeca= "+p.getDorDeCabeca()+",cansaco= "+p.getCansaco()+",dif_respirar= "+p.getDifRespirar()+",sem_sintomas= "+p.getSemSintomas()+",medicacao= '"+p.getMedicacao()+"' where cod_paciente= "+p.getCod_paciente();
+            stat.execute(sql);
+ 
+        } catch (SQLException e){
+            throw new SQLException("Erro ao alterar dados "+e.getMessage());
+        }
+    }
+   
 }

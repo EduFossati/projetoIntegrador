@@ -124,6 +124,64 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
         }
     }
     
+    public void alterarDados(){
+        try{
+          Paciente p = new Paciente();
+          Integer codPaciente = id_paciente.get(cbxPaciente.getSelectedIndex()-1);
+          p.setCod_paciente(codPaciente);
+          p.setMedicacao(jtMedicacao.getText());
+          
+          if(jcFebre.isSelected()){
+               p.setFebre(0);
+            }
+            else {
+                p.setFebre(1);
+            }
+            
+            if(jcTosseSeca.isSelected()){
+                p.setTosse(0);
+            }
+            else{
+                p.setTosse(1);
+            }
+            
+            if(jcDorDeCabeça.isSelected()){
+                p.setDorDeCabeca(0);
+            }
+            else{
+                 p.setDorDeCabeca(1);
+            }
+            
+            if(jcCansaco.isSelected()){
+                p.setCansaco(0);
+            }
+            else{
+                p.setCansaco(1);
+            }
+            
+            if(jcDificuldadeParaRespirar.isSelected()){
+                p.setDifRespirar(0);
+            }
+            else{
+                p.setDifRespirar(1);
+            }
+            
+            if(jcSemSintomas.isSelected()){
+                p.setSemSintomas(0);
+            }
+            else{
+                p.setSemSintomas(1);
+            }
+          
+          PacienteServicos ps = new PacienteServicos();
+          ps.alterarDadosPaciente(p);
+          JOptionPane.showMessageDialog(null, "Alteração executada!","Confirmação",JOptionPane.INFORMATION_MESSAGE);
+          
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro: "+e,"Erro",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
     public void limparCampos(){
         cbxPaciente.setSelectedIndex(0);
         jcCansaco.setSelected(false);
@@ -173,6 +231,7 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
         jtMedicacao = new javax.swing.JTextArea();
         jbFimQuarentena = new javax.swing.JButton();
         cbxPaciente = new javax.swing.JComboBox<>();
+        jbAtualizarDados = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -220,7 +279,7 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlCabecalhoSintomas, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(68, 68, 68))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +314,7 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jcDorDeCabeça)
                     .addComponent(jcTosseSeca)
@@ -305,14 +364,14 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(160, 160, 160))
+                .addGap(164, 164, 164))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jtMedicacao.setColumns(20);
@@ -331,6 +390,13 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
         cbxPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxPacienteActionPerformed(evt);
+            }
+        });
+
+        jbAtualizarDados.setText("Atualizar Dados do Paciente");
+        jbAtualizarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAtualizarDadosActionPerformed(evt);
             }
         });
 
@@ -356,7 +422,9 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
                             .addComponent(cbxPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jbFimQuarentena, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jbFimQuarentena, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                            .addComponent(jbAtualizarDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -367,7 +435,7 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlNomePessoa)
                     .addComponent(cbxPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlDataInicio)
                     .addComponent(jtfDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -379,7 +447,9 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jbAtualizarDados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbFimQuarentena)
                 .addContainerGap())
         );
@@ -398,6 +468,10 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jbFimQuarentenaActionPerformed
 
+    private void jbAtualizarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarDadosActionPerformed
+       alterarDados();
+    }//GEN-LAST:event_jbAtualizarDadosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbxPaciente;
@@ -406,6 +480,7 @@ public class GUIMonitorarPessoa extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAtualizarDados;
     private javax.swing.JButton jbFimQuarentena;
     private javax.swing.JCheckBox jcCansaco;
     private javax.swing.JCheckBox jcDificuldadeParaRespirar;
