@@ -249,7 +249,7 @@ public class GUITelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jbEmergenciaActionPerformed
 
     private void jbMonitorarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMonitorarActionPerformed
-        GUIMonitorar mp = new GUIMonitorar();
+        GUIMonitorarPessoa mp = new GUIMonitorarPessoa();
         jDesktopPane1.add(mp);
         mp.setVisible(true);
     }//GEN-LAST:event_jbMonitorarActionPerformed
