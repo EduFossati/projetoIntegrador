@@ -67,7 +67,7 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
             p.setCod_usuario(cod_usuario);
             p.setNome(jtfNome.getText());
             p.setMedicacao(jTextArea1.getText());
-            p.setInicioIsolamento(jtfDataInicio.getText());
+            p.setInicioIsolamento(jftfDataInicio.getText());
             if(jcFebre.isSelected()){
                p.setFebre(0);
             }
@@ -126,6 +126,20 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
             JOptionPane.ERROR_MESSAGE);
         }
         }
+    
+    public void limparCampos(){
+        jtfNome.setText(null);
+        jftfDataInicio.setText(null);
+        cbxResponsavel.setSelectedIndex(0);
+        jcCansaco.setSelected(false);
+        jcDificuldadeParaRespirar.setSelected(false);
+        jcDorDeCabeça.setSelected(false);
+        jcFebre.setSelected(false);
+        jcSemSintomas.setSelected(false);
+        jcTosseSeca.setSelected(false);
+        jTextArea1.setText(null);
+        
+    }
     /**
      * Creates new form GUIAdicionarPessoa
      */
@@ -149,7 +163,6 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
         jlNomePessoa = new javax.swing.JLabel();
         jlDataInicio = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
-        jtfDataInicio = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jlCabecalhoSintomas = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -166,6 +179,7 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
         jbSalvarPessoa = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cbxResponsavel = new javax.swing.JComboBox<>();
+        jftfDataInicio = new javax.swing.JFormattedTextField();
 
         setClosable(true);
 
@@ -183,14 +197,14 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
             .addGroup(jpCabecalhoAdicionarPessoaLayout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(jlCabecalhoAdicionaPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jpCabecalhoAdicionarPessoaLayout.setVerticalGroup(
             jpCabecalhoAdicionarPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCabecalhoAdicionarPessoaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlCabecalhoAdicionaPessoa)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jlNomePessoa.setText("Nome:");
@@ -327,6 +341,12 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
             }
         });
 
+        try {
+            jftfDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -348,8 +368,8 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
                     .addComponent(jlNomePessoa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jftfDataInicio)
                     .addComponent(jtfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                    .addComponent(jtfDataInicio)
                     .addComponent(cbxResponsavel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -357,19 +377,19 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpCabecalhoAdicionarPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlNomePessoa)
                     .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlDataInicio)
-                    .addComponent(jtfDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                    .addComponent(jftfDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbxResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -387,7 +407,7 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
 
     private void jbSalvarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarPessoaActionPerformed
         adicionar();
-        
+        limparCampos();
     }//GEN-LAST:event_jbSalvarPessoaActionPerformed
 
     private void cbxResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxResponsavelActionPerformed
@@ -411,12 +431,12 @@ public class GUIAdicionarPessoa extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jcFebre;
     private javax.swing.JCheckBox jcSemSintomas;
     private javax.swing.JCheckBox jcTosseSeca;
+    private javax.swing.JFormattedTextField jftfDataInicio;
     private javax.swing.JLabel jlCabecalhoAdicionaPessoa;
     private javax.swing.JLabel jlCabecalhoSintomas;
     private javax.swing.JLabel jlDataInicio;
     private javax.swing.JLabel jlNomePessoa;
     private javax.swing.JPanel jpCabecalhoAdicionarPessoa;
-    private javax.swing.JTextField jtfDataInicio;
     private javax.swing.JTextField jtfNome;
     // End of variables declaration//GEN-END:variables
 
